@@ -40,7 +40,7 @@ export default {
         590: "590px",
       },
       backgroundImage: {
-        "hero-pattern": "url('https://i.ibb.co/MkvLDfb/Rectangle-4389.png')",
+        "hero-pattern": "url('https://img.freepik.com/premium-vector/professional-customer-support-agent-call-center-service_1332472-4536.jpg')",
       },
     },
   },
