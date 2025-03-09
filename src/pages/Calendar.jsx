@@ -1,7 +1,5 @@
 import {
   ScheduleComponent,
-  ViewsDirective,
-  ViewDirective,
   Day,
   Week,
   WorkWeek,
@@ -11,7 +9,6 @@ import {
   Resize,
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 import { scheduleData } from "../assets/dummy";
 import { Header } from "../components";
