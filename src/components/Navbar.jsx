@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
@@ -40,6 +40,8 @@ const Navbar = () => {
     currentColor,
   } = useStateContext();
 
+  const navbarRef = useRef(null);
+
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -57,8 +59,25 @@ const Navbar = () => {
     }
   }, [screenSize]);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        setIsClicked({
+          chat: false,
+          cart: false,
+          userProfile: false,
+          notification: false,
+        });
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, [setIsClicked]);
+
   return (
-    <div className="flex justify-between p-2 md:mx-6 relative">
+    <div ref={navbarRef} className="flex justify-between p-2 md:mx-6 relative">
       <NavButton
         title="Menu"
         customFunc={() => setActiveMenu((prev) => !prev)}
