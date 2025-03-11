@@ -16,6 +16,7 @@
     "@syncfusion/ej2-react-charts": "^28.2.7",
     "@syncfusion/ej2-react-dropdowns": "^28.2.7",
     "@syncfusion/ej2-react-grids": "^28.2.7",
+    "@syncfusion/ej2-react-heatmap": "^28.2.3",
     "@syncfusion/ej2-react-inputs": "^28.2.3",
     "@syncfusion/ej2-react-kanban": "^28.2.3",
     "@syncfusion/ej2-react-popups": "^28.2.6",
