@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import {
   GridComponent,
   ColumnsDirective,
@@ -13,14 +15,50 @@ import {
   Inject,
 } from "@syncfusion/ej2-react-grids";
 
-import { ordersData, contextMenuItems, ordersGrid } from "../assets/dummy";
 import { Header } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Orders = () => {
   const { currentColor, currentMode } = useStateContext();
+  const [ordersData, setOrdersData] = useState([]);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/v1/orders`
+        );
+
+        console.log("Raw Data from API:", data); // 👀 Debugging step
+
+        const formattedData = data.map((order) => ({
+          orderID: order._id,
+          image:
+            order.image?.length > 0
+              ? order.image[0]
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png",
+          status: order.status,
+          location: order.location,
+          customerName: order.customerId?.name || "Unknown",
+          yearlyAmountSpent: order.customerId?.yearlyAmountSpent?.$numberDecimal
+            ? parseFloat(order.customerId.yearlyAmountSpent.$numberDecimal) // ✅ Extract the decimal value correctly
+            : 0,
+          brand: order.brand || "Unknown",
+        }));
+
+        console.log("Formatted Data:", formattedData); // 👀 Debugging step
+
+        setOrdersData(formattedData);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
 
   const editing = { allowDeleting: true, allowEditing: true };
+
   return (
     <div
       className={`m-2 md:m-10 p-2 md:p-10 rounded-3xl ${
@@ -38,17 +76,78 @@ const Orders = () => {
         dataSource={ordersData}
         allowPaging
         allowSorting
-        contextMenuItems={contextMenuItems}
         allowExcelExport
         allowPdfExport
         editSettings={editing}
         style={{ backgroundColor: currentColor }}
       >
         <ColumnsDirective>
-          {ordersGrid.map((item, index) => (
-            <ColumnDirective key={index} {...item} />
-          ))}
+          <ColumnDirective
+            field="image"
+            headerText="Image"
+            textAlign="Center"
+            width="130"
+            template={(props) => (
+              <img
+                src={props.image}
+                alt="Product"
+                className="w-12 h-12 rounded-md mx-auto shadow-md"
+              />
+            )}
+          />
+          <ColumnDirective
+            field="brand"
+            headerText="Brand"
+            width="120"
+            textAlign="Center"
+          />
+          <ColumnDirective
+            field="customerName"
+            headerText="Customer"
+            width="150"
+            textAlign="Center"
+          />
+          <ColumnDirective
+            field="yearlyAmountSpent"
+            headerText="Yearly Spent"
+            format="C2"
+            textAlign="Center"
+            width="120"
+          />
+          <ColumnDirective
+            field="status"
+            headerText="Status"
+            width="120"
+            textAlign="Center"
+            template={(props) => {
+              const statusColors = {
+                return: "#FB9678",
+                complete: "#8BE78B",
+                pending: "#03C9D7",
+                cancelled: "#FF5C8E",
+              };
+
+              return (
+                <span
+                  className="px-2 py-1 rounded-lg text-white"
+                  style={{
+                    backgroundColor:
+                      statusColors[props.status.toLowerCase()] || "red",
+                  }}
+                >
+                  {props.status}
+                </span>
+              );
+            }}
+          />
+          <ColumnDirective
+            field="location"
+            headerText="Location"
+            width="150"
+            textAlign="Center"
+          />
         </ColumnsDirective>
+
         <Inject
           services={[
             Resize,
@@ -65,4 +164,5 @@ const Orders = () => {
     </div>
   );
 };
+
 export default Orders;
