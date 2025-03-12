@@ -31,20 +31,26 @@ const Orders = () => {
 
         console.log("Raw Data from API:", data); // 👀 Debugging step
 
-        const formattedData = data.map((order) => ({
-          orderID: order._id,
-          image:
+        const formattedData = data.map((order) => {
+          const randomImage =
             order.image?.length > 0
-              ? order.image[0]
-              : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png",
-          status: order.status,
-          location: order.location,
-          customerName: order.customerId?.name || "Unknown",
-          yearlyAmountSpent: order.customerId?.yearlyAmountSpent?.$numberDecimal
-            ? parseFloat(order.customerId.yearlyAmountSpent.$numberDecimal) // ✅ Extract the decimal value correctly
-            : 0,
-          brand: order.brand || "Unknown",
-        }));
+              ? order.image[Math.floor(Math.random() * order.image.length)] // Get a random image
+              : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/624px-No-Image-Placeholder.svg.png";
+
+          return {
+            orderID: order._id,
+            productName: order.productName || "Unknown Product",
+            image: randomImage,
+            status: order.status,
+            location: order.location,
+            customerName: order.customerId?.name || "Unknown",
+            yearlyAmountSpent: order.customerId?.yearlyAmountSpent
+              ?.$numberDecimal
+              ? parseFloat(order.customerId.yearlyAmountSpent.$numberDecimal)
+              : 0,
+            brand: order.brand || "Unknown",
+          };
+        });
 
         console.log("Formatted Data:", formattedData); // 👀 Debugging step
 
@@ -94,6 +100,12 @@ const Orders = () => {
                 className="w-12 h-12 rounded-md mx-auto shadow-md"
               />
             )}
+          />
+          <ColumnDirective
+            field="productName"
+            headerText="Product Name"
+            width="200"
+            textAlign="Center"
           />
           <ColumnDirective
             field="brand"

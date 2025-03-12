@@ -72,6 +72,8 @@ const Bar = () => {
     valueType: "Category",
     title: "Location",
     titleStyle: { color: currentMode === "Dark" ? "#E5E7EB" : "#000" }, // ✅ Fix applied
+    labelRotation: 45,
+    labelIntersectAction: "Rotate45",
     labelStyle: { color: currentMode === "Dark" ? "#E5E7EB" : "#000" },
   };
 

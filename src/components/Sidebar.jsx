@@ -30,7 +30,7 @@ const Sidebar = () => {
             <Link
               to="/"
               onClick={handleCloseSideBar}
-              className="items-center gap-3 ml-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
+              className="items-center gap-3 ml-4 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
             >
               <SiShopware /> <span>Shoppy</span>
             </Link>

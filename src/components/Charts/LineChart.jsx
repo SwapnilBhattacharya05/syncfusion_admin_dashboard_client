@@ -73,6 +73,8 @@ const LineChart = () => {
         valueType: "Category",
         title: "Location",
         titleStyle: axisTitleStyle,
+        labelRotation: 45,
+        labelIntersectAction: "Rotate45",
       }}
       primaryYAxis={{
         title: "Number of Orders",
