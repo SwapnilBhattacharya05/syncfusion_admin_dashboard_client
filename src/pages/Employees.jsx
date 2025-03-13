@@ -30,6 +30,8 @@ const Employees = () => {
           education: employee.education,
           age: employee.age,
           gender: employee.gender,
+          city: employee.city || "Unknown", // ✅ Added city field
+          leaveOrNot: employee.leaveOrNot ? "On Leave" : "Present", // ✅ Added leave status
         }));
 
         setEmployeesData(formattedData);
@@ -69,6 +71,12 @@ const Employees = () => {
             textAlign="Center"
           />
           <ColumnDirective
+            field="city"
+            headerText="City"
+            width="150"
+            textAlign="Center"
+          />
+          <ColumnDirective
             field="name"
             headerText="Name"
             width="150"
@@ -91,6 +99,21 @@ const Employees = () => {
             headerText="Gender"
             width="120"
             textAlign="Center"
+          />
+          <ColumnDirective
+            field="leaveOrNot"
+            headerText="Leave Status"
+            width="150"
+            textAlign="Center"
+            template={(prop) => (
+              <span
+                style={{
+                  color: prop.leaveOrNot === "On Leave" ? "#D61355" : "#22EAAA",
+                }}
+              >
+                {prop.leaveOrNot}
+              </span>
+            )}
           />
         </ColumnsDirective>
         <Inject services={[Page, Search, Toolbar]} />

@@ -48,7 +48,6 @@ const LineChart = () => {
           })),
         }));
 
-        console.log("Formatted Chart Data:", formattedData);
         setChartData(formattedData);
       } catch (error) {
         console.error("Error fetching orders:", error);

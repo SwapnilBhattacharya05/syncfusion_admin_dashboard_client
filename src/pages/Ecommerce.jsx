@@ -1,50 +1,24 @@
-import { MdOutlineSupervisorAccount } from "react-icons/md";
-import { BsBoxSeam, BsChatLeft } from "react-icons/bs";
+import { BsBoxSeam } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { FiBarChart, FiShoppingCart, FiStar } from "react-icons/fi";
-import { HiOutlineRefresh } from "react-icons/hi";
-import { IoIosMore } from "react-icons/io";
 import { GoDotFill } from "react-icons/go";
-import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
-import { Stacked, Pie, Button, SparkLine, LineChart } from "../components";
-import {
-  earningData,
-  medicalproBranding,
-  recentTransactions,
-  weeklyStats,
-  dropdownData,
-  SparklineAreaData,
-  ecomPieChartData,
-} from "../assets/dummy";
-import product9 from "../assets/product9.jpg";
+import { HiOutlineRefresh } from "react-icons/hi";
+import { MdOutlineSupervisorAccount } from "react-icons/md";
+import { LineChart, Pie, SparkLine, Stacked } from "../components";
 
 import {
   ChartComponent,
+  DateTime,
+  Inject,
+  Legend,
   SeriesCollectionDirective,
   SeriesDirective,
-  Inject,
   SplineAreaSeries,
-  DateTime,
-  Legend,
 } from "@syncfusion/ej2-react-charts";
 
-import { useStateContext } from "../contexts/ContextProvider";
-import { useState, useEffect } from "react";
 import axios from "axios";
-
-const DropDown = ({ currentMode }) => (
-  <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
-    <DropDownListComponent
-      id="time"
-      fields={{ text: "Time", value: "Id" }}
-      style={{ border: "none", color: currentMode === "Dark" && "white" }}
-      value="1"
-      dataSource={dropdownData}
-      popupHeight="220px"
-      popupWidth="120px"
-    />
-  </div>
-);
+import { useEffect, useState } from "react";
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Ecommerce = () => {
   const { currentColor, currentMode } = useStateContext();
@@ -285,15 +259,6 @@ const Ecommerce = () => {
               <p className="text-2xl">${getTotalYearlyEarnings()}</p>
             </div>
           </div>
-          <div className="mt-6">
-            <Button
-              color="white"
-              bgColor={currentColor}
-              text="Download"
-              borderRadius="10px"
-              size="md"
-            />
-          </div>
         </div>
 
         <div className="flex m-3 flex-wrap justify-center gap-1.5 items-center">
@@ -418,7 +383,7 @@ const Ecommerce = () => {
           </div>
         </div>
         <div>
-          <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex flex-col gap-10">
+          <div className="bg-white dark:bg-secondary-dark-bg dark:text-gray-200 rounded-2xl md:w-400 p-8 m-3 flex flex-col gap-10">
             <div>
               <p className="text-2xl font-semibold ">
                 $

@@ -67,7 +67,6 @@ const Financial = () => {
           (a, b) => new Date(a.x) - new Date(b.x)
         );
 
-        console.log("🔥 Updated Candlestick Chart Data:", formattedData);
         setChartData(formattedData);
       } catch (error) {
         console.error("❌ Error fetching orders:", error);

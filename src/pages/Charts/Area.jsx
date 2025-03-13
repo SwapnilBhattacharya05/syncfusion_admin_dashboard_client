@@ -53,7 +53,6 @@ const Area = () => {
           (a, b) => a.weeks - b.weeks
         );
 
-        console.log("🔥 Processed Chart Data:", formattedData);
 
         setChartData(formattedData);
       } catch (error) {

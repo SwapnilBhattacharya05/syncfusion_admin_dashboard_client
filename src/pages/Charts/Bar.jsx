@@ -56,7 +56,6 @@ const Bar = () => {
           item.color = colorPalette[index % colorPalette.length]; // Cycle through three colors
         });
 
-        console.log("🔥 Processed Bar Chart Data:", formattedData);
 
         setChartData(formattedData);
       } catch (error) {

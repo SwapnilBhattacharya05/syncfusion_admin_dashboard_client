@@ -34,7 +34,6 @@ const Pie = () => {
         // Keep only top 20 brands
         formattedData = formattedData.slice(0, 20);
 
-        console.log("🔥 Top 20 Pie Chart Data:", formattedData);
 
         setChartData(formattedData);
       } catch (error) {

@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import {
-  GridComponent,
-  ColumnsDirective,
   ColumnDirective,
+  ColumnsDirective,
+  ContextMenu,
+  Edit,
+  ExcelExport,
+  Filter,
+  GridComponent,
+  Inject,
+  Page,
+  PdfExport,
   Resize,
   Sort,
-  ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
-  Edit,
-  Inject,
 } from "@syncfusion/ej2-react-grids";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { Header } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -29,8 +29,6 @@ const Orders = () => {
           `${import.meta.env.VITE_REACT_APP_SERVER_URL}/api/v1/orders`
         );
 
-        console.log("Raw Data from API:", data); // 👀 Debugging step
-
         const formattedData = data.map((order) => {
           const randomImage =
             order.image?.length > 0
@@ -44,15 +42,12 @@ const Orders = () => {
             status: order.status,
             location: order.location,
             customerName: order.customerId?.name || "Unknown",
-            yearlyAmountSpent: order.customerId?.yearlyAmountSpent
-              ?.$numberDecimal
-              ? parseFloat(order.customerId.yearlyAmountSpent.$numberDecimal)
-              : 0,
             brand: order.brand || "Unknown",
+            discountedPrice: order.discountedPrice
+              ? parseFloat(order.discountedPrice)
+              : 0, // ✅ Replacing yearlyAmountSpent with discountedPrice
           };
         });
-
-        console.log("Formatted Data:", formattedData); // 👀 Debugging step
 
         setOrdersData(formattedData);
       } catch (error) {
@@ -108,6 +103,13 @@ const Orders = () => {
             textAlign="Center"
           />
           <ColumnDirective
+            field="discountedPrice"
+            headerText="Price"
+            format="C2"
+            textAlign="Center"
+            width="120"
+          />
+          <ColumnDirective
             field="brand"
             headerText="Brand"
             width="120"
@@ -118,13 +120,6 @@ const Orders = () => {
             headerText="Customer"
             width="150"
             textAlign="Center"
-          />
-          <ColumnDirective
-            field="yearlyAmountSpent"
-            headerText="Yearly Spent"
-            format="C2"
-            textAlign="Center"
-            width="120"
           />
           <ColumnDirective
             field="status"
