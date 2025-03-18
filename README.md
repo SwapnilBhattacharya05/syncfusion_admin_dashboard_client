@@ -42,6 +42,13 @@ cd syncfusion_admin_dashboard_client
 npm install
 ```
 
+**Setup Environment Variables**
+
+```bash
+VITE_SYNC_FUSION_KEY=
+VITE_REACT_APP_SERVER_URL=
+```
+
 **Start the App**
 
 ```bash
@@ -49,6 +56,10 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to view the app in your browser.
+
+---
+
+Get your Syncfusion license key by Loging into your Syncfusion Account and request for a license key, then claim it from your [Syncfusion Dashboard](https://www.syncfusion.com/account/claim-license-key)
 
 ## 🌐 Socials
 
