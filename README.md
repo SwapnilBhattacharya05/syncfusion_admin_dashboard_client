@@ -66,8 +66,3 @@ Get your Syncfusion license key by Loging into your Syncfusion Account and reque
 [![Discord](https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white)](https://discord.gg/https://discord.com/invite/MvRFh7qMvA) [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/swapnil.bhattacharya.39) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/iam___swapnil) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/swapnil-bhattacharya-357ab527a)
 
 ---
-🚀 **Contribute:**  
-Got ideas to improve this app? PRs are welcome — let’s build something amazing together!
-
-📩 **Feedback:**  
-If you have any feedback, reach out on Discord or LinkedIn. Let’s make this app better with every iteration!
